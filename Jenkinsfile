@@ -12,7 +12,7 @@ retriever: modernSCM(
 // The name you want to give your Spring Boot application
 // Each resource related to your app will be given this name
 appName = "hello-java-spring-boot"
-
+def workspace = pwd()
 pipeline {
     // Use the 'maven' Jenkins agent image which is provided with OpenShift 
     agent { label "maven" }
@@ -27,7 +27,6 @@ pipeline {
                 // This uploads your application's source code and performs a binary build in OpenShift
                 // This is a step defined in the shared library (see the top for the URL)
                 // (Or you could invoke this step using 'oc' commands!)
-                def workspace = pwd()
                 binaryBuild(buildConfigName: appName, buildFromPath: "${workspace}")
             }
         }
