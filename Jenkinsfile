@@ -1,15 +1,26 @@
-#!/usr/bin/env groovy
-
-node {
-    stage('Build and release') {
-        sh 'echo "Building and releasing..."'
-    }
-
-    stage('Publish') {
-        sh 'echo "Publishing.."'
-    }
-
-    stage('Deploy') {
-        sh 'echo "Deploying..."'
+pipeline {
+    agent any
+    stages {
+        stage ('Compile Stage') {
+            steps {
+                withMaven(maven : 'apache-maven-3.8.1') {
+                    bat'mvn clean compile'
+                }
+            }
+        }
+        stage ('Testing Stage') {
+            steps {
+                withMaven(maven : 'apache-maven-3.8.1') {
+                    bat'mvn test'
+                }
+            }
+        }
+        stage ('Install Stage') {
+            steps {
+                withMaven(maven : 'apache-maven-3.8.1') {
+                    bat'mvn install'
+                }
+            }
+        }
     }
 }
