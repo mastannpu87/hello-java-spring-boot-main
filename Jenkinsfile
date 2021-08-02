@@ -1,6 +1,6 @@
 // Based on:
 // https://raw.githubusercontent.com/redhat-cop/container-pipelines/master/basic-spring-boot/Jenkinsfile
-node('label') {
+node {
 // The name you want to give your Spring Boot application
 // Each resource related to your app will be given this name
  appName = "hello-java-spring-boot"
@@ -21,5 +21,7 @@ node('label') {
                 binaryBuild(buildConfigName: appName, buildFromPath: "${workspace}")
             }
         }
+        // You could extend the pipeline by tagging the image,
+        // or deploying it to a production environment, etc......
     }
 }
