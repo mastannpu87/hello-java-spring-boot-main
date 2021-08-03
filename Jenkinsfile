@@ -35,7 +35,5 @@ pipeline {
                 sh "docker push ${dockerRepo}:${dockerVersion}"
                 }
             }
-        }
-
     }
 }
