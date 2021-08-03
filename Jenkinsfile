@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage ('Compile Stage') {
             steps {
@@ -9,17 +8,24 @@ pipeline {
                 }
             }
         }
-        stage ('Compile Stage') {
+        stage ('Testing Stage') {
             steps {
                 withMaven(maven : 'apache-maven-3.8.1') {
-                    sh 'mvn clean install'
+                    sh 'mvn test'
                 }
             }
         }
-    post{
-        always {
-          cleanWs()            
+        stage ('Install Stage') {
+            steps {
+                withMaven(maven : 'apache-maven-3.8.1') {
+                    sh 'mvn install'
+                }
+            }
         }
     }
-  }
+    post {
+      always {
+        cleanWs()
+      }
+    }
 }
