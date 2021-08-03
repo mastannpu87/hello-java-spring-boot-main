@@ -1,14 +1,5 @@
 pipeline {
-    environment {
-        JAVA_TOOL_OPTIONS = "-Duser.home=/var/maven"
-    }
-    agent {
-        docker {
-            image "maven:3.8.1-adoptopenjdk-11"
-            label "master"
-            args "-v /tmp/maven:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2"
-        }
-    }
+    agent any
     stages {
         stage ('Compile Stage') {
             steps {
