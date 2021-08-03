@@ -24,10 +24,20 @@ pipeline {
         }
         stage ('Docker Build') {
             steps {
-                script {
-                def customImage = docker.build("mastannpu87/hello-java-spring-boot:latest")
-                customImage.push()
-                    }
+                sh 'echo "Running Docker Build..."'
+                // script {
+                // def customImage = docker.build("mastannpu87/hello-java-spring-boot:latest")
+                // customImage.push()
+                //     }
+                }
+            }
+        stage ('Docker Deploy') {
+            steps {
+                sh 'echo "Docker Push..."'
+                // script {
+                // def customImage = docker.build("mastannpu87/hello-java-spring-boot:latest")
+                // customImage.push()
+                //     }
                 }
             }
         }
