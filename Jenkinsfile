@@ -25,7 +25,7 @@ pipeline {
     }
     post {
       always {
-          cleanup()g
+          cleanup()
       }
     }
 }
